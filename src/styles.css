@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn_primary {
+    @apply py-2 px-8 border text-white hover:bg-white hover:text-black transition duration-300;
+}
+
+.btn_secondary {
+    @apply py-4 px-12 border border-black text-black font-semibold hover:bg-black hover:text-white transition duration-300;
+}
+
+.responsive {
+    @apply bp-1720:w-[1520px];
+    @apply bp-1520:w-[1320px];
+    @apply bp-1320:w-[1120px];
+    @apply bp-1120:w-[920px];
+    @apply bp-920:w-[820px];
+    @apply bp-820:w-[720px];
+    @apply bp-720:w-[620px];
+    @apply bp-620:w-[520px];
+}
+
+/* @layer components {
+    .responsive {
+        @apply bg-red-600;
+
+        @screen bp-1720 {
+        @apply bg-red-600;
+        }
+
+        @screen bp-1520 {
+        @apply w-[1320px];
+        }
+
+        @screen bp-1320 {
+        @apply w-[1120px];
+        }
+
+        @screen bp-1120 {
+        @apply w-[920px];
+        }
+
+        @screen bp-920 {
+        @apply w-[820px];
+        }
+
+        @screen bp-820 {
+        @apply w-[720px];
+        }
+    }
+} */
