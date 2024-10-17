@@ -32,6 +32,8 @@ module.exports = {
           '@apply py-4 px-12 border border-black text-black font-semibold hover:bg-black hover:text-white transition duration-300': {}
         }
       },
+
+      // tentative de gestion du responsive pour mes containers. Conflit avec le responsive du reste. Voir plus tard comment faire pour avoir ce type de systeme fonctionnel
     //  responsive: {
     //     'bp-1720': {
     //       '@apply bp-1720:w-[1520px]':{},

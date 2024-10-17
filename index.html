@@ -13,32 +13,108 @@
     <header class="relative flex flex-col justify-start items-center h-[600px] bg-bgHero bg-cover bg-center overflow-hidden">
     <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed bg-black opacity-80 z-10"></div>
         <nav class="flex justify-center items-center bg-white w-full z-20">
-            <ul class="flex justify-center items-center gap-4 mr-4 pt-4 pb-4 text-xs"> 
-                <!-- réfléchir pour le hover. Doit prendre en compte le padding pour apparaitre top nav. Définir taille nav=pad.li>a mais ne prend pas en compte. Voir avant push ce soir-->
-                <li><a href="">ACCUEIL</a></li>
-                <li><a href="">BUSINESS SCHOOL</a></li>
-                <li><a href="">ECOLE ESPORT</a></li>
-                <li><a href="">COURS DE JEUX VIDÉO</a></li>
-                <li><a href="">LE CAMPUS</a></li>
-                <li><a href="">NEWSROOM</a></li>
-                <li><a href="">PARENTS</a></li>
-            </ul>
+            <div class="burger_focus bp-820:relative bp-820:pr-[5%] bp-820:hover:">
+                <ul class="flex justify-center items-center gap-4 mr-4 pt-4 pb-4 text-xs bp-820:hidden bp-820:absolute bp-820:top-[100%] bp-820:left-[50%]"> 
+                    <!-- réfléchir pour le hover. Doit prendre en compte le padding pour apparaitre top nav. Définir taille nav=pad.li>a mais ne prend pas en compte. Voir avant push ce soir-->
+                    <li class="bp-820:ml-4"><a href="">ACCUEIL</a></li>
+                    <li class="bp-820:ml-4"><a href="">BUSINESS SCHOOL</a></li>
+                    <li class="bp-820:ml-4"><a href="">ECOLE ESPORT</a></li>
+                    <li class="bp-820:ml-4"><a href="">COURS DE JEUX VIDÉO</a></li>
+                    <li class="bp-820:ml-4"><a href="">LE CAMPUS</a></li>
+                    <li class="bp-820:ml-4"><a href="">NEWSROOM</a></li>
+                    <li class="bp-820:ml-4"><a href="">PARENTS</a></li>
+                </ul> 
+                <div class="menu_icon_wrapper hidden bp-820:block bp-820:hover:opacity-5">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
             <a class="rounded-xl border py-0.5 px-1 bg-slate-100 text-xxs" href="">FR | EN</a>
         </nav>
+
+        <!-- BURGER MENU TROUVÉ SUR STACKOVERFLOW AVEC TUTO POUR UN RENDU TOP EN CSS ONLY. À ETUDIER AVANT APPLICATION -->
+         
+        <!-- <label
+        class="cursor-pointer z-30 relative inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        <!-- STAN / I added peer hidden peer/menu into input | SEPPE / peer/menu is not needed, we just use peer here -->
+        <!-- <input class="peer hidden" type="checkbox" id="mobile-menu" />
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15" />
+        </svg> -->
+        <!-- Step 1: Dropdown menu -->
+        <!-- To start preparing the animation of the mobile menu, just get the dropdown ready in open position -->
+        <!-- Don't worry about anything else, to make it easer we have set the height of the navigation to h-20 -->
+        <!-- The dropdown menu is positioned fixed top-20, so right below the navigation bar -->
+        <!-- Next what we will doo is to add here the hamburger icon from my dev.to article -->
+        <!-- It will activate with the tailwindcss peer- modifier to show this dropdown menu -->
+        <!-- Because of this peer- modifier we need to position this dropdown menu inside the <label> element of the hamburger button, we do that in the next step ... -->
+        <!-- Read more about that at https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-sibling-state -->
+
+        <!-- Step 2: added here an extra container to avoid the dropdown sliding over the menu -->
+        <!-- Move the dropdown up with -translate-y-full and add pper-checked:translate-y-0 -->
+        <!-- Since peer-* works only with siblings, we need to use here peer-checked:*: -->
+        <!-- See for more information: https://tailwindcss.com/docs/hover-focus-and-other-states#styling-direct-children -->
+        <!-- STAN / I added hidden peer-checked/menu:block into div class-->
+        <!-- SEPPE / changed peer-checked/menu:block to peer-checked:block -->
+        <!-- SEPPE / for some reading animations don't work anymore if this container has been hidden, move it out of the screen on x axis and we get at least the downward movement back -->
+        <!-- SEPPE / animation at the end is still missing... or does it feel complete like this? -->
+        <!-- STAN / I just removed -translate-x-full-->
+        <!-- STAN Added 'pointer-events-none' class for the mobile menu to close. This class will ignore being on the top of the element and touch-->
+        <!-- STAN Added 'peer-checked:pointer-events-auto' class when mobile menu opens, so this will enable to be on the top of the content and touch -->
+        <!-- STAN Documentation: https://tailwindcss.com/docs/pointer-events -->
+        <!-- <div
+            class="peer-checked:translate-x-0 peer-checked:*:translate-y-0 fixed w-full left-0 top-20 z-10 overflow-hidden pointer-events-none peer-checked:pointer-events-auto">
+            <div
+                class="-translate-y-full relative transition-transform delay-100 duration-500 ease-in-out font-normal divide-y shadow bg-gray-700 divide-gray-600">
+
+                <ul class="py-2 block  text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownLargeButton">
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">About</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Services</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contact</a>
+                    </li>
+                </ul>
+                <div class="py-1">
+                    <a href="#"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Get
+                        started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </label> 
+
+    <!------------------------------------------------------------------------------------------------------------------------------------>
+
+    
         <!-- section flex row center center  -->
         <section class="hero flex flex-col justify-start items-center h-full text-white z-20">
             <img class="mt-14" src="images/logo-gc-hero.png" alt="Logo de gaming campus">
-            <p class="font-thin text-textHero tracking-widest text-xl mt-6">PASSION. PROFESSIONNALISME. PERFORMANCE.</p>
+            <p class="font-thin text-textHero tracking-widest text-xl text-center mt-6 bp-720:text-sm">PASSION. PROFESSIONNALISME. PERFORMANCE.</p>
             <a class="btn_primary mt-10 text-hero hover:" href="">GAMING CAMPUS EN VIDEO</a> <!-- insérer un favicon dans le bouton -->
         </section>
     </header>
-    <section class="description flex justify-center items-center h-[200px]">
+    <section class="description flex justify-center items-center h-[200px] bp-820:h-[150px]">
         <div class="responsive flex justify-center items-center text-center w-[1720px]">
-            <p class=" text-3xl font-thin w-2/3 bp-1120:text-2xl">Imaginé par des professionnels des jeux vidéo et de l'éducation, Gaming Campus est un lieu unique pour révéler les talents et développer les compétences</p>
+            <p class=" text-3xl font-thin w-2/3 bp-1120:text-2xl bp-820:text-xl">Imaginé par des professionnels des jeux vidéo et de l'éducation, Gaming Campus est un lieu unique pour révéler les talents et développer les compétences</p>
         </div>
     </section>
     <section class="cards bg-black flex justify-center items-center h-[600px] text-white bp-1120:h-[1300px]">
-        <div class="responsive flex justify-center items-center text-center gap-4 w-[1720px]  bp-1120:flex-col bp-1120:h-full bp-1120:gap-0">
+        <div class="responsive flex justify-center items-center text-center gap-4 w-[1720px] bp-620:w-[520px] bp-720:w-[620px] bp-820:w-[720px] bp-920:w-[820px] bp-1120:flex-col bp-1120:h-full bp-1120:gap-0 bp-1120:w-[920px] bp-1320:w-[1120px] bp-1520:w-[1320px] bp-1720:w-[1520px]">
             <div class="bs school flex flex-col justify-between items-center w-1/4 h-full gap-8 bp-1120:gap-4 bp-1120:justify-center">
                 <img src="images/logo-gbs-home.png" alt="Logo représentant la gaming business school">
                 <div class="card_text w-2/3 bp-1520:w-3/4 bp-1320:w-full">
@@ -65,8 +141,8 @@
             </div>
         </div>
     </section>
-    <section class="news flex flex-col justify-center items-center h-[1000px]">
-        <article class="news_row_top flex justify-between items-center mb-10 w-[60%] bp-1420:w-[65%] bp-1320:w-[75%] bp-1120:flex-col">
+    <section class="news flex flex-col justify-center items-center h-[1000px] bg-slate-100 bp-720:h-[900px]">
+        <article class="news_row_top flex justify-between items-center mb-10 w-[60%] bp-1420:w-[65%] bp-1320:w-[75%] bp-1120:flex-col bp-1120:text-center">
             <div class="news_title">
                 <h3 class="text-4xl font-extralight tracking-widest bp-1320:text-3xl">LES NEWS DU CAMPUS</h3>
                 <p class="text-lg font-extralight bp-1320:text-base">Suivez l'actualité de Gaming Campus, de G. Guru, G.B.S et G. Academy</p>
@@ -75,121 +151,139 @@
                 <a class="btn_secondary" href="">LA NEWSROOM</a> <!--ajouter même favicon que dans bouton hero-->
             </div>
         </article>
-        <article class="responsive container_news flex justify-center items-start mt-4 w-[1720px] gap-8 bp-1120:flex-col bp-1120:items-center">
-            <div class="reunion flex flex-col justify-between items-center h-full bp-1120:w-full w-1/4">
+        <article class="responsive container_news flex justify-center items-start mt-4 w-[1720px] gap-8 bp-620:w-[520px] bp-720:w-[620px] bp-720:gap-16 bp-820:w-[720px] bp-920:w-[820px] bp-1120:flex-col bp-1120:items-center bp-1120:w-[920px] bp-1320:w-[1120px] bp-1520:w-[1320px] bp-1720:w-[1520px] ">
+            <div class="reunion flex flex-col justify-between items-center h-full w-1/5 bp-1120:w-auto">
                 <div class="flex flex-col justify-center items-center gap-5 bp-1120:flex-row">
-                    <img class="shadow-imgShadow" src="images/inauguration_gaming_campus_photo.jpg" alt="Image représentant les locaux de gaming campus">
+                    <img class="shadow-imgShadow bp-720:hidden" src="images/inauguration_gaming_campus_photo.jpg" alt="Image représentant les locaux de gaming campus">
                     <div class="elements flex flex-col justify-center items-center h-full w-3/4">
                         <h4 class="text-xl pb-3">Réunion d'information 19 décembre</h4>
                         <p>Venez à notre rencontre lors de cette réunion d'information. Témoignages des étudiants / Ateliers sur la pédagogie par projet "Active Learning by Gaming Campus" / Découverte des locaux / Rencontre avec l'équipe pédagogique / Questions réponses</p>
                     </div> 
                 </div>
-                <div class="btn_wrapper w-3/4 bp-1120: flex bp-1120:justify-end bp-1120:-mt-6">
+                <div class="btn_wrapper w-3/4 bp-1120: flex bp-1120:justify-end bp-1120:-mt-6 bp-720:mt-4 bp-720:justify-center">
                     <a class="inline-block text-xs font-semibold tracking-wider text-newsNav hover:scale-105" href="">SUR INSCRIPTION</a>
                 </div>
             </div>
-            <div class="pgw flex flex-col justify-between items-center h-full bp-1120:w-full w-1/4 ">
+            <div class="pgw flex flex-col justify-between items-center h-full w-1/5 bp-1120:w-auto">
                 <div class="flex flex-col justify-center items-center gap-5 bp-1120:flex-row">
-                    <img class="shadow-imgShadow" src="images/pgw18home.jpg" alt="Image de la campagne de publicité de la paris games week">
+                    <img class="shadow-imgShadow bp-720:hidden" src="images/pgw18home.jpg" alt="Image de la campagne de publicité de la paris games week">
                     <div class="elements flex flex-col justify-center items-center h-full w-3/4">
                         <h4 class="text-xl pb-3">Paris Games Week 2018 et réunions d'information</h4>
                         <p>Pendant tout le mois d'octobre venez rencontrer l'équipe pédagogique du Gaming Campus 3 réunions d'information au Gaming Campus Lyon et stand Gaming Campus à la PGW18</p>
                     </div>
                 </div>
-                <div class="btn_wrapper w-3/4 bp-1120: flex bp-1120:justify-end bp-1120:-mt-6">
+                <div class="btn_wrapper w-3/4 bp-1120: flex bp-1120:justify-end bp-1120:-mt-6 bp-720:mt-4 bp-720:justify-center">
                     <a class="inline-block text-xs font-semibold tracking-wider text-newsNav hover:scale-105" href="">LIRE LA SUITE</a>
                 </div>
             </div>
-            <div class="opening flex flex-col justify-between items-center h-full bp-1120:w-full w-1/4">
+            <div class="opening flex flex-col justify-between items-center h-full w-1/5 bp-1120:w-auto">
                 <div class="flex flex-col justify-center items-center gap-5 bp-1120:flex-row">
-                    <img class="shadow-imgShadow" src="images/inauguration_gaming_campus_photo.jpg" alt="image représentant l'inauguration du campus de  la ville de Lyon">
+                    <img class="shadow-imgShadow bp-720:hidden" src="images/inauguration_gaming_campus_photo.jpg" alt="image représentant l'inauguration du campus de  la ville de Lyon">
                     <div class="elements flex flex-col justify-center items-center h-full w-3/4">
                         <h4 class="text-xl pb-3">Inauguration Gaming Campus Lyon</h4>
                         <p>Revivez l'inauguration du Gaming Campus Lyon avec les 180 invités, les grandes annonces de la rentrée, les photos de la soirée et les premières dates de réunions d'information</p>
                     </div>
                 </div>
-                <div class="btn_wrapper w-3/4 bp-1120:flex bp-1120: justify-end bp-1120:-mt-6">
+                <div class="btn_wrapper w-3/4 bp-1120:flex bp-1120: justify-end bp-1120:-mt-6 bp-720:mt-4 bp-720:justify-center">
                     <a class="inline-block text-xs font-semibold tracking-wider text-newsNav hover:scale-105" href="">LIRE LA SUITE</a>
                 </div>
             </div>
         </article>
     </section>
-</body>
-<footer>
-    <div class="responsive">
-        <article class="footer_top">
-            <div class="img_footer_wrapper">
-                <img src="" alt="">
-            </div>
-            <div class="informations">
-                <h4>INFOS PRATIQUES</h4>
-                <ul>
-                    <li><a href="">Gaming Business School</a></li>
-                    <li><a href="">Gaming Academy</a></li>
-                    <li><a href="">Gaming Guru</a></li>
-                    <li><a href="">Recrutement</a></li>
-                    <li><a href="">Investisseurs</a></li>
-                    <li><a href="">Mentions légales</a></li>
-                    <li><a href="">C.G.U</a></li>
-                </ul>
-            </div>
-            <div class="parents">
-                <p>Questions / réponses pour vous accompagner dans votre réflexion sur l'orientation de votre enfant et le choix de Gaming Campus.</p>
-                <a href="En savoir plus"></a>
-            </div>
-            <div class="contact">
-                <div class="contact">
-                    <h4>NOUS CONTACTER</h4>
-                    <p>Tél: 04 04 04 04 04 <span>gaming@gamingcampus.fr</span></p>
+    <section class="pre_footer flex justify-center items-center h-[800px] w-full bp-1120:h-[1000px]">
+        <div class="responsive flex flex-col justify-center items-center w-[1720px] bp-620:w-[520px] bp-720:w-[620px] bp-820:w-[720px] bp-920:w-[820px] bp-1120:w-[920px] bp-1320:w-[1120px] bp-1520:w-[1320px] bp-1720:w-[1520px]">
+            <article class="pre_footer_top inline-grid grid-cols-4 h-1/2 w-[80%] border-b bp-1120:grid-cols-2 bp-1120: grid-rows-2">
+                <div class="img_footer_wrapper flex justify-center items-start">
+                    <img src="images/logo-gc-footer.jpg" alt="Logo du Gaming Campus">
                 </div>
-                <div class="socials">
-                    <h4>NOUS SUIVRE</h4>
-                    <ul>
-                        <!-- insérer favicons socials -->
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
+                <div class="informations flex flex-col justify-center items-center mb-16">
+                    <ul class="">
+                        <h4 class="font-bold pb-3">INFOS PRATIQUES</h4>
+                        <li class="pb-3"><a href="">Gaming Business School</a></li>
+                        <li class="pb-3"><a href="">Gaming Academy</a></li>
+                        <li class="pb-3"><a href="">Gaming Guru</a></li>
+                        <li class="pb-3"><a href="">Recrutement</a></li>
+                        <li class="pb-3"><a href="">Investisseurs</a></li>
+                        <li class="pb-3"><a href="">Mentions légales</a></li>
+                        <li class="pb-3"><a href="">C.G.U</a></li>
                     </ul>
-                    <!-- Voir si ok dans cette div avec padding top -->
-                    <p>© 2018 Gaming Campus. <span>Tous droits réservés</span></p>
                 </div>
-            </div>
-        </article>
-        <article class="footer_bottom">
-            <div class="footer_bottom_title">
-                <h4>ILS PARLENT DE NOUS</h4>
-                <p>Voir toutes les retombées presse.</p>
-            </div>
-            <!-- mettre en flex row space around ou between à voir en fonction -->
-            <div class="press_links">
-                <div class="footer_bottom_wrapper">
-                    <img src="" alt="">
+                <div class="parents flex flex-col justify-start items-center">
+                    <h4 class="font-bold pb-2 w-1/2">PARENTS</h4>
+                    <p class="w-1/2">Questions / réponses pour vous accompagner dans votre réflexion sur l'orientation de votre enfant et le choix de Gaming Campus.</p>
+                    <a href="En savoir plus"></a>
                 </div>
-                <div class="footer_bottom_wrapper">
-                    <img src="" alt="">
+                <div class="contact bp-1120:flex bp-1120:flex-col bp-1120: justify-start bp-1120:items-center">
+                    <div class="contact flex flex-col justify-center items-start pb-4">
+                        <h4 class="font-bold pb-2">NOUS CONTACTER</h4>
+                        <p>Tél: 04 04 04 04 04 <span class="block">gaming@gamingcampus.fr</span></p>
+                    </div>
+                    <div class="socials">
+                        <h4 class="font-bold pb-2">NOUS SUIVRE</h4>
+                        <ul class="flex gap-4 pb-10">
+                            <!-- insérer favicons socials -->
+                            <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                            <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li>
+                            <li><a href=""><i class="fa-brands fa-instagram"></i>
+                            </a></li>
+                        </ul>
+                        <!-- Voir si ok dans cette div avec padding top -->
+                        <p>© 2018 Gaming Campus. <span class="block">Tous droits réservés</span></p>
+                    </div>
                 </div>
-                <div class="footer_bottom_wrapper">
-                    <img src="" alt="">
+            </article>
+            <article class="pre_footer_bottom flex justify-around items-centrer w-[80%] bp-720:flex-col bp-720:items-center">
+                <div class="footer_bottom_title mt-16 bp-720:text-center">
+                    <h4 class="font-bold text-lg">ILS PARLENT DE NOUS</h4>
+                    <p>Voir toutes les retombées presse.</p>
                 </div>
-                <div class="footer_bottom_wrapper">
-                    <img src="" alt="">
+                <!-- mettre en flex row space around ou between à voir en fonction -->
+                <div class="press_links flex flex-wrap justify-around items-center gap-6 mt-16 bp-720:mt-8">
+                    <div class="footer_bottom_wrapper">
+                        <img src="images/figaro.png" alt="Logo du journal le figaro">
+                    </div>
+                    <div class="footer_bottom_wrapper">
+                        <img src="images/challenges.png" alt="Logo du journal Challenges">
+                    </div>
+                    <div class="footer_bottom_wrapper">
+                        <img src="images/leparisien.png" alt="Logo du journal le parisien">
+                    </div>
+                    <div class="footer_bottom_wrapper">
+                        <img src="images/lemonde.png" alt="Logo du journal le monde">
+                    </div>
+                    <div class="footer_bottom_wrapper">
+                        <img src="images/echos.png" alt="Logo du journal les echos">
+                    </div>
+                    <div class="footer_bottom_wrapper">
+                        <img src="images/bfm.png" alt="Logo du journal bfm.tv">
+                    </div>
+                    <div class="footer_bottom_wrapper">
+                        <img src="images/figaro.png" alt="Logo du journal le figaro">
+                    </div>
+                    <div class="footer_bottom_wrapper">
+                        <img src="images/challenges.png" alt="Logo du journal challenges">
+                    </div>
                 </div>
-                <div class="footer_bottom_wrapper">
-                    <img src="" alt="">
-                </div>
-                <div class="footer_bottom_wrapper">
-                    <img src="" alt="">
-                </div>
-                <div class="footer_bottom_wrapper">
-                    <img src="" alt="">
-                </div>
-                <div class="footer_bottom_wrapper">
-                    <img src="" alt="">
-                </div>
-            </div>
-        </article>
-        
+            </article>
+        </div>
+    </section>
+</body>
+<footer class="flex justify-center items-center bg-black">
+    <div class="responsive w-[1720px] flex flex-col justify-center items-center pt-8">
+        <h4 class="text-white font-bold text-lg">PARTENAIRES OFFICIELS</h4>
+        <ul class="flex flex-wrap justify-center items-center gap-8 mt-8 mb-8">
+            <li><img src="images/apollo.png" alt="Logo de la société apollo"></li>
+            <li><img src="images/chiliz.png" alt="Logo de la société chiliz"></li>
+            <li><img src="images/omen.png" alt="Logo de la société omen"></li>
+            <li><img src="images/joa.png" alt="Logo de la société joa"></li>
+            <li><img src="images/chiliz.png" alt="Logo de la société chiliz"></li>
+            <li><img src="images/maxonomic.png" alt="Logo de la société maxnomic"></li>
+            <li><img src="images/credit-mutuel.png" alt="Logo de la société crédit mutuel"></li>
+            <li><img src="images/joa.png" alt="Logo de la société joa"></li>
+            <li><img src="images/omen.png" alt="Logo de la société omen"></li>
+            <li><img src="images/chiliz.png" alt="Logo de la société chiliz"></li>
+        </ul>
     </div>
 </footer>
 </html>
